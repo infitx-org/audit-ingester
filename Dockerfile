@@ -12,6 +12,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Python script into the container
 COPY src /opt/app/src
+COPY additional-files /opt/app/additional-files
 
 # Optional: Copy .env if you're using dotenv (for local use)
 # COPY .env .
