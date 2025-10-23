@@ -26,6 +26,7 @@ S3_ENDPOINT = os.getenv("S3_ENDPOINT", "http://localhost:9595")
 S3_ACCESS_KEY = os.getenv("S3_ACCESS_KEY", "minio_access_key")
 S3_SECRET_KEY = os.getenv("S3_SECRET_KEY", "minio_secret_key")
 S3_FOLDER = os.getenv("S3_FOLDER", "some-env-orc")
+S3_SKIP_SSL_VERIFY = os.getenv("S3_SKIP_SSL_VERIFY", "false").lower() == "true"
 
 # Batch Settings
 BATCH_SIZE = int(os.getenv("BATCH_SIZE", "1000"))
@@ -49,6 +50,7 @@ s3_client = boto3.client(
     endpoint_url=S3_ENDPOINT,
     aws_access_key_id=S3_ACCESS_KEY,
     aws_secret_access_key=S3_SECRET_KEY,
+    verify=not S3_SKIP_SSL_VERIFY,
 )
 
 # Initialize Kafka Consumer
